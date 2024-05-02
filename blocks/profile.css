@@ -19,6 +19,13 @@
   grid-area: button;
   border-radius: 1px;
   border-color: white;
+  margin-left: 18px;
+}
+
+.profile__edit-button:hover {
+  background: transparent url(../images/edit-icon-hover.svg) center no-repeat;
+  cursor: pointer;
+  border: 1px;
 }
 
 .profile__add-button {
@@ -28,6 +35,12 @@
   margin-left: auto;
   border-radius: 2px;
   border-color: white;
+}
+
+.profile__add-button:hover {
+  background: transparent url(../images/add-icon-hover.svg) center no-repeat;
+  cursor: pointer;
+  border: 1px solid;
 }
 
 .profile__title {
