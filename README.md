@@ -13,6 +13,10 @@ Project parameters set by "client" (Tripleten) in above link which was used for 
 
 https://github.com/bnut117/se_project_aroundtheus.git
 
+**Link to Video about project**
+
+https://drive.google.com/file/d/1PxZxvqYC3ewx2Pz2HB3vdoQJ5yHpCVD8/view?usp=sharing
+
 ## Project features
 
 - Semantic HTML5
