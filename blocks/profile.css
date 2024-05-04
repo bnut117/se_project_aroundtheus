@@ -20,12 +20,14 @@
   border-radius: 1px;
   border-color: white;
   margin-left: 18px;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .profile__edit-button:hover {
-  background: transparent url(../images/edit-icon-hover.svg) center no-repeat;
+  background: url(../images/edit-icon-hover.svg) center no-repeat;
+  opacity: 0.6;
   cursor: pointer;
-  border: 1px;
 }
 
 .profile__add-button {
@@ -35,12 +37,14 @@
   margin-left: auto;
   border-radius: 2px;
   border-color: white;
+  border-width: 2px;
+  border-style: solid;
 }
 
 .profile__add-button:hover {
-  background: transparent url(../images/add-icon-hover.svg) center no-repeat;
+  background: url(../images/add-icon-hover.svg) center no-repeat;
+  opacity: 0.6;
   cursor: pointer;
-  border: 1px solid;
 }
 
 .profile__title {

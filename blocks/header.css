@@ -1,6 +1,6 @@
 .header {
   margin-top: 45px;
-  height: 70px;
+  min-height: 70px;
   border-bottom-style: solid;
-  border-color: #545454;
+  border-color: rgb(84 84 84 / 0.7);
 }
