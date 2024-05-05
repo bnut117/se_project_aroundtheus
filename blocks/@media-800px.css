@@ -1,6 +1,0 @@
-@media only screen and (max-width: 800px) {
-  .card__list {
-    display: grid;
-    grid-gap: 1rem;
-  }
-}

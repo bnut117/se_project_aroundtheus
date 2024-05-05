@@ -19,7 +19,7 @@
   grid-area: button;
   border-radius: 1px;
   border-color: white;
-  margin-left: 18px;
+  margin: 15px 0 9px 18px;
   border-width: 1px;
   border-style: solid;
 }
@@ -78,4 +78,59 @@
   object-fit: cover;
   background-position: center;
   margin-right: 24px;
+}
+
+@media screen and (max-width: 480px) {
+  .profile {
+    flex-direction: column;
+  }
+
+  .profile__image {
+    margin: 0;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .profile__title {
+    max-width: 380px;
+    font-size: 22px;
+    text-align: center;
+    line-height: 26px;
+  }
+
+  .profile__description {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 14px;
+    margin-bottom: 36px;
+  }
+
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    margin: auto 10px;
+  }
+
+  .profile__add-button {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .profile__description {
+    line-height: 16px;
+  }
+
+  .profile__add-button {
+    margin-top: 36px;
+    width: 282px;
+  }
 }

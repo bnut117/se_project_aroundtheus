@@ -13,3 +13,13 @@
   padding: 0;
   margin-bottom: 67px;
 }
+
+@media all and (max-width: 320px) {
+  .cards {
+    margin-top: 36px;
+  }
+
+  .cards__list {
+    margin-bottom: 48px;
+  }
+}
