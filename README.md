@@ -11,7 +11,7 @@ Project parameters set by "client" (Tripleten) in above link which was used for 
 
 **Link to Site**
 
-https://github.com/bnut117/se_project_aroundtheus.git
+https://bnut117.github.io/se_project_aroundtheus/
 
 **Link to Video about project**
 

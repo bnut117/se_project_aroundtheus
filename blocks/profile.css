@@ -25,7 +25,6 @@
 }
 
 .profile__edit-button:hover {
-  background: url(../images/edit-icon-hover.svg) center no-repeat;
   opacity: 0.6;
   cursor: pointer;
 }
@@ -42,7 +41,6 @@
 }
 
 .profile__add-button:hover {
-  background: url(../images/add-icon-hover.svg) center no-repeat;
   opacity: 0.6;
   cursor: pointer;
 }
@@ -54,6 +52,10 @@
   font-weight: 500;
   grid-area: title;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 380px;
 }
 
 .profile__description {
