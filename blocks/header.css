@@ -1,6 +1,6 @@
 .header {
   margin-top: 45px;
-  min-height: 70px;
+  padding-bottom: 41px;
   border-bottom-style: solid;
   border-color: rgb(84 84 84 / 0.7);
 }
@@ -8,6 +8,7 @@
 @media all and (max-width: 320px) {
   .header {
     margin-top: 28px;
+    padding-bottom: 32px;
   }
 
   .header__image {

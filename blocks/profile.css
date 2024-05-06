@@ -19,7 +19,7 @@
   grid-area: button;
   border-radius: 1px;
   border-color: white;
-  margin: 15px 0 9px 18px;
+  margin: 15px 15px 9px 18px;
   border-width: 1px;
   border-style: solid;
 }
@@ -98,7 +98,7 @@
   }
 
   .profile__title {
-    max-width: 380px;
+    max-width: 220px;
     font-size: 22px;
     text-align: center;
     line-height: 26px;
@@ -130,7 +130,6 @@
   }
 
   .profile__add-button {
-    margin-top: 36px;
     width: 282px;
   }
 }
