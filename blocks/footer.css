@@ -24,6 +24,7 @@
 
   .footer__copyright {
     font-size: 14px;
-    margin: 0;
+    max-width: 282px;
+    margin: auto;
   }
 }

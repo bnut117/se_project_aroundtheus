@@ -43,7 +43,6 @@
 }
 
 .card__like-button:hover {
-  background: url(../images/like-active.svg) center no-repeat;
   cursor: pointer;
   opacity: 0.5;
 }
