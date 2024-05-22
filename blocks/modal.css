@@ -12,15 +12,18 @@
   padding: 0 19px;
 }
 
+/*
 .modal__opened {
   display: flex;
 }
+*/
 
 .modal__container {
   background-color: white;
-  padding: 36px;
   border-radius: 10px;
   position: relative;
+  width: 430px;
+  height: 330px;
 }
 
 .modal__close {
@@ -39,4 +42,126 @@
 
 .modal__heading {
   color: #000;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0;
+  padding-top: 34px;
+  padding-left: 36px;
+  padding-bottom: 54px;
+  padding-right: 64px;
+}
+
+.modal__form {
+  width: 358px;
+  margin: auto;
+}
+
+.modal__title {
+  border-bottom: 1px solid rgb(84 84 84 / 0.2);
+  margin-bottom: 30px;
+}
+
+input[type="text"][name="title"] {
+  border: none;
+  height: 14px;
+  width: 100%;
+  padding: 0;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 13px;
+}
+
+.modal__description {
+  border-bottom: 1px solid rgb(84 84 84 / 0.2);
+  margin-bottom: 30px;
+}
+
+input[type="text"][name="description"] {
+  border: none;
+  height: 14px;
+  width: 100%;
+  padding: 0;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin-bottom: 13px;
+}
+
+::placeholder {
+  color: #000;
+}
+
+.modal__button {
+  width: 358px;
+  height: 50px;
+  margin-bottom: 36px;
+  color: #fff;
+  background-color: #000;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  border-radius: 2px;
+}
+
+@media all and (max-width: 580px) {
+  .modal {
+    width: 282px;
+    margin: auto;
+  }
+
+  .modal__container {
+    height: 322px;
+    top: -123px;
+    max-width: 282px;
+  }
+
+  .modal__close {
+    right: 4px;
+    height: 26px;
+    width: 26px;
+  }
+
+  .modal__heading {
+    width: 238px;
+    height: 22px;
+    font-weight: 900;
+    font-size: 18px;
+    padding-top: 25px;
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-bottom: 75px;
+  }
+
+  .modal__form {
+    max-width: 238px;
+    margin: 0;
+  }
+
+  .modal__title {
+    margin-left: 22px;
+  }
+
+  .modal__description {
+    margin-left: 22px;
+  }
+
+  .modal__button {
+    margin-left: 22px;
+    margin-right: 22px;
+    max-width: 238px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .modal {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 }
