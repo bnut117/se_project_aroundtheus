@@ -62,6 +62,8 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const addNewCardButton = document.querySelector(".profile__add-button");
 
+//add previewImageModal function here
+
 /*************
  * FUNCTIONS *
  *************/
@@ -84,9 +86,19 @@ function getCardElement(cardData) {
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+
+  // I need help with the delete button - I cannon get it to work or show on each card
+
+  // add click listener to cardImageEl
+  // openModal with previewImageModal ===> and add to html
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
+  });
+
+  deleteButton.addEventListener("click", () => {
+    deleteButton.cardElement.remove(cardData);
   });
 
   cardImageEl.src = cardData.link;
