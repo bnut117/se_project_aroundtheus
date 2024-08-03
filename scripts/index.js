@@ -88,8 +88,6 @@ function getCardElement(cardData) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
 
-  // I need help with the delete button - I cannon get it to work or show on each card
-
   // add click listener to cardImageEl
   // openModal with previewImageModal ===> and add to html
 
@@ -98,7 +96,7 @@ function getCardElement(cardData) {
   });
 
   deleteButton.addEventListener("click", () => {
-    deleteButton.cardElement.remove(cardData);
+    cardElement.remove();
   });
 
   cardImageEl.src = cardData.link;
