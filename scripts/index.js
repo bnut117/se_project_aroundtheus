@@ -62,7 +62,17 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const addNewCardButton = document.querySelector(".profile__add-button");
 
-//add previewImageModal function here
+//add Image Modal function
+const imagePreviewModal = document.querySelector("#image-preview-modal");
+const imagePreviewCloseButton = imagePreviewModal.querySelector(
+  "#image-preview-close-button"
+);
+const modalImage = imagePreviewModal.querySelector("#modal-image");
+
+// Add event listener to close button of the image preview modal
+imagePreviewCloseButton.addEventListener("click", () =>
+  closeModal(imagePreviewModal)
+);
 
 /*************
  * FUNCTIONS *
@@ -81,6 +91,12 @@ function renderCard(cardData) {
   cardListEl.prepend(cardElement);
 }
 
+function openImageModal(imageSrc, imageAlt) {
+  modalImage.src = imageSrc;
+  modalImage.alt = imageAlt;
+  openModal(imagePreviewModal);
+}
+
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
@@ -88,8 +104,9 @@ function getCardElement(cardData) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
 
-  // add click listener to cardImageEl
-  // openModal with previewImageModal ===> and add to html
+  cardImageEl.addEventListener("click", () =>
+    openImageModal(cardData.link, cardData.name)
+  );
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
