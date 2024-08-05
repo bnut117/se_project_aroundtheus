@@ -68,7 +68,6 @@ const imagePreviewCloseButton = imagePreviewModal.querySelector(
   "#image-preview-close-button"
 );
 const modalImage = imagePreviewModal.querySelector("#modal-image");
-
 // Add event listener to close button of the image preview modal
 imagePreviewCloseButton.addEventListener("click", () =>
   closeModal(imagePreviewModal)
