@@ -90,9 +90,11 @@ function renderCard(cardData) {
   cardListEl.prepend(cardElement);
 }
 
-function openImageModal(imageSrc, imageAlt) {
+function openImageModal(imageSrc, imageAlt, captionText) {
   modalImage.src = imageSrc;
   modalImage.alt = imageAlt;
+  const modalCaption = document.querySelector("#modal-caption");
+  modalCaption.textContent = captionText;
   openModal(imagePreviewModal);
 }
 
@@ -104,7 +106,7 @@ function getCardElement(cardData) {
   const deleteButton = cardElement.querySelector(".card__delete-button");
 
   cardImageEl.addEventListener("click", () =>
-    openImageModal(cardData.link, cardData.name)
+    openImageModal(cardImageEl.src, cardImageEl.alt, cardTitleEl.textContent)
   );
 
   likeButton.addEventListener("click", () => {
@@ -138,6 +140,7 @@ function handleAddCardEditSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardLinkInput.value;
   renderCard({ name, link }, cardListEl);
+  addCardForm.reset();
   closeModal(addCardModal);
 }
 
@@ -165,3 +168,6 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
+
+// I need assistance with the last few tasks
+// I cannot figure out how to finish
