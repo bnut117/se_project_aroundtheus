@@ -169,5 +169,13 @@ addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
 
-// I need assistance with the last few tasks
-// I cannot figure out how to finish
+document.querySelectorAll(".card__image").forEach((cardImage) => {
+  cardImage.addEventListener("click", (event) => {
+    const imageSrc = event.target.src;
+    const imageAlt = event.target.alt;
+    const captionText = event.target
+      .closest(".card")
+      .querySelector(".card__title").textContent;
+    openImageModal(imageSrc, imageAlt, captionText);
+  });
+});
