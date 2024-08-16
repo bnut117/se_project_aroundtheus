@@ -168,12 +168,3 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
-
-cardImage.addEventListener("click", (event) => {
-  const imageSrc = event.target.src;
-  const imageAlt = event.target.alt;
-  const captionText = event.target
-    .closest(".card")
-    .querySelector(".card__title").textContent;
-  openImageModal(imageSrc, imageAlt, captionText);
-});
