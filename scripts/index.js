@@ -169,13 +169,11 @@ addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
 
-document.querySelectorAll(".card__image").forEach((cardImage) => {
-  cardImage.addEventListener("click", (event) => {
-    const imageSrc = event.target.src;
-    const imageAlt = event.target.alt;
-    const captionText = event.target
-      .closest(".card")
-      .querySelector(".card__title").textContent;
-    openImageModal(imageSrc, imageAlt, captionText);
-  });
+cardImage.addEventListener("click", (event) => {
+  const imageSrc = event.target.src;
+  const imageAlt = event.target.alt;
+  const captionText = event.target
+    .closest(".card")
+    .querySelector(".card__title").textContent;
+  openImageModal(imageSrc, imageAlt, captionText);
 });
