@@ -56,7 +56,11 @@
               name="title"
               id="profile-title-input"
               placeholder="Jacques Cousteau"
+              minlength="2"
+              maxlength="40"
+              required
             />
+            <span class="popup__error" id="profile-title-input-error"></span>
           </div>
           <div class="modal__description">
             <input
@@ -65,7 +69,14 @@
               name="description"
               id="profile-description-input"
               placeholder="Explorer"
+              minlength="2"
+              maxlength="200"
+              required
             />
+            <span
+              class="popup__error"
+              id="profile-description-input-error"
+            ></span>
           </div>
           <button class="modal__button">Save</button>
         </form>
@@ -86,16 +97,25 @@
               name="title"
               id="profile-title-input"
               placeholder="Title"
+              minlength="1"
+              maxlength="30"
+              required
             />
+            <span class="popup__error" id="profile-title-input-error"></span>
           </div>
           <div class="modal__description">
             <input
               class="modal__input modal__input_type_link"
-              type="text"
+              type="url"
               name="image link"
               id="profile-description-input"
               placeholder="Image link"
+              required
             />
+            <span
+              class="popup__error"
+              id="profile-description-input-error"
+            ></span>
           </div>
           <button class="modal__button">Save</button>
         </form>
@@ -127,5 +147,6 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>

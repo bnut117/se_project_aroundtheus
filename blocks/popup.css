@@ -1,0 +1,10 @@
+.popup__error_visible {
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+.popup__button_disabled {
+  background-color: white;
+  color: black;
+  opacity: 20%;
+}
