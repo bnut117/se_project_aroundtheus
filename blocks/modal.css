@@ -120,6 +120,17 @@
   font-family: "Inter";
 }
 
+.modal__error_visible {
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+.modal__button_disabled {
+  background-color: white;
+  color: black;
+  opacity: 20%;
+}
+
 @media all and (max-width: 580px) {
   .modal {
     width: 282px;

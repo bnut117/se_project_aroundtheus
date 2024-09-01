@@ -73,6 +73,8 @@ imagePreviewCloseButton.addEventListener("click", () =>
   closeModal(imagePreviewModal)
 );
 
+const modalCaption = document.querySelector("#modal-caption");
+
 /*************
  * FUNCTIONS *
  *************/
@@ -97,7 +99,6 @@ function renderCard(cardData) {
 function openImageModal(imageSrc, imageAlt, captionText) {
   modalImage.src = imageSrc;
   modalImage.alt = imageAlt;
-  const modalCaption = document.querySelector("#modal-caption");
   modalCaption.textContent = captionText;
   openModal(imagePreviewModal);
 }
@@ -136,7 +137,7 @@ function handleOverlayClick(e) {
 
 function handleEscPress(e) {
   if (e.key === "Escape") {
-    const modalElement = document.querySelector(".modal_open");
+    const modalElement = document.querySelector(".modal_opened");
     if (modalElement) {
       closeModal(modalElement.closest(".modal"));
     }
@@ -187,18 +188,3 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
-
-// not needed - will remove once confirmed not needed
-/*
-function closeModal(modalElement) {
-  modalElement.classList.remove("modal_opened");
-}
-
-function addModalCloseListeners(modalElement) {
-  const overlay = modalElement.closest(".modal");
-
-  overlay.addEventListener("click", handleOverlayClick);
-
-  document.addEventListener("keydown", handleEscPress);
-}
-  */
