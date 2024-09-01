@@ -1,35 +1,6 @@
 // enabling validation by calling enableValidation()
 // pass all the settings on call
 
-function closeModal(modalElement) {
-  modalElement.classList.remove("modal_opened");
-}
-
-function handleOverlayClick(e) {
-  if (e.target.classList.contains("modal")) {
-    closeModal(e.target);
-  }
-}
-
-function handleEscPress(e) {
-  if (e.key === "Escape") {
-    const modalElement = document.querySelector(".modal_open");
-    if (modalElement) {
-      closeModal(modalElement.closest(".modal"));
-    }
-  }
-}
-
-function addModalCloseListeners(modalElement) {
-  const overlay = modalElement.closest(".modal");
-
-  overlay.addEventListener("click", handleOverlayClick);
-
-  document.addEventListener("keydown", handleEscPress);
-}
-
-// above is the click off modal and esc button press close functions
-
 function showInputError(
   formElement,
   inputElement,
