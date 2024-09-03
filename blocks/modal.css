@@ -52,7 +52,7 @@
   margin: 0;
   padding-top: 34px;
   padding-left: 36px;
-  padding-bottom: 54px;
+  padding-bottom: 24px;
   padding-right: 64px;
 }
 
@@ -75,8 +75,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  margin-bottom: 13px;
-  margin-top: 13px;
+  margin-top: 30px;
 }
 
 .modal__description {
@@ -92,6 +91,7 @@
   width: 358px;
   height: 50px;
   margin-bottom: 36px;
+  margin-top: 48px;
   color: #fff;
   background-color: #000;
   font-family: "Inter";
@@ -130,7 +130,7 @@
   background-color: white;
   color: black;
   opacity: 20%;
-  margin-top: 15px;
+  margin-top: 48px;
 }
 
 @media all and (max-width: 580px) {
