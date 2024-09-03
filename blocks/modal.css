@@ -123,6 +123,7 @@
 
 .modal__error_visible {
   color: red;
+  position: absolute;
 }
 
 .modal__button_disabled {
