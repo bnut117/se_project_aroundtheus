@@ -1,3 +1,8 @@
+import Card from "../components/Card.js";
+
+/*import FormValidator from "../components/FormValidator.js";
+ */
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -29,6 +34,14 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+const card = new Card(cardData, "#card-template");
+card.getView();
 
 /*************
  * ELEMENTS; *
@@ -91,8 +104,8 @@ function openModal(modal) {
   document.addEventListener("keydown", handleEscPress);
 }
 
-function renderCard(cardData) {
-  const cardElement = getCardElement(cardData);
+function renderCard(data) {
+  const cardElement = getCardElement(data);
   cardListEl.prepend(cardElement);
 }
 
@@ -103,7 +116,7 @@ function openImageModal(imageSrc, imageAlt, captionText) {
   openModal(imagePreviewModal);
 }
 
-function getCardElement(cardData) {
+function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
@@ -122,10 +135,10 @@ function getCardElement(cardData) {
     cardElement.remove();
   });
 
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name;
 
-  cardTitleEl.textContent = cardData.name;
+  cardTitleEl.textContent = data.name;
   return cardElement;
 }
 
@@ -181,7 +194,7 @@ profileModalCloseButton.addEventListener("click", () =>
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardForm.addEventListener("submit", handleAddCardEditSubmit);
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+initialCards.forEach((data) => renderCard(data, cardListEl));
 
 //add new card button
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
