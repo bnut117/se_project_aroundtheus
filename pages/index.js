@@ -1,7 +1,6 @@
 import Card from "../components/Card.js";
 
-/*import FormValidator from "../components/FormValidator.js";
- */
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -174,6 +173,7 @@ function handleAddCardEditSubmit(e) {
   const link = cardLinkInput.value;
   renderCard({ name, link }, cardListEl);
   addCardForm.reset();
+  addCardFormValidator.disableButton();
   closeModal(addCardModal);
 }
 

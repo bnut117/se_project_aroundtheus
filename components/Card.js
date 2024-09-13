@@ -19,10 +19,10 @@ export default class Card {
       .addEventListener("click", () => {
         this.handleDeleteCard();
       });
-    /* //"_cardImageEl"
+    //"_cardImageEl"
     this._cardImageEl.addEventListener("click", () => {
-      this._handleImageClick(this);
-    }); */
+      this._handleImageClick(this._name, this._link);
+    });
   }
 
   _handleDeleteCard() {
@@ -40,9 +40,10 @@ export default class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-    //get card view
-    //set event listener
+    this._cardImageEl = this._cardElement.querySelector(".card__image");
+    this._cardImageEl.src = this._link;
+    this._cardImageEl.alt = this._name;
+
     this._setEvenetListeners();
-    //return card
   }
 }
