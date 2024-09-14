@@ -42,6 +42,9 @@ const cardData = {
 const card = new Card(cardData, "#card-template");
 card.getView();
 
+const validator = new FormValidator();
+validator.enableValidation();
+
 /*************
  * ELEMENTS; *
  *************/
