@@ -42,8 +42,22 @@ const cardData = {
 const card = new Card(cardData, "#card-template");
 card.getView();
 
-const validator = new FormValidator();
-validator.enableValidation();
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
+addCardFormValidator.enableValidation();
+
+const editProfileFormValidator = new FormValidator(
+  validationSettings,
+  profileEditForm
+);
+editProfileFormValidator.enableValidation();
 
 /*************
  * ELEMENTS; *
