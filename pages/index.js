@@ -39,26 +39,6 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-const card = new Card(cardData, "#card-template");
-card.getView();
-
-const validationSettings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-
-const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
-addCardFormValidator.enableValidation();
-
-const editProfileFormValidator = new FormValidator(
-  validationSettings,
-  profileEditForm
-);
-editProfileFormValidator.enableValidation();
-
 /*************
  * ELEMENTS; *
  *************/
@@ -218,3 +198,23 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
+
+const card = new Card(cardData, "#card-template");
+card.getView();
+
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
+addCardFormValidator.enableValidation();
+
+const editProfileFormValidator = new FormValidator(
+  validationSettings,
+  profileEditForm
+);
+editProfileFormValidator.enableValidation();
