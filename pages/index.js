@@ -112,6 +112,11 @@ function openImageModal(imageSrc, imageAlt, captionText) {
   openModal(imagePreviewModal);
 }
 
+function createCard(data) {
+  const card = new Card(data, "#card-template");
+  return card.getView();
+}
+
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
