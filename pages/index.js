@@ -101,7 +101,7 @@ function openModal(modal) {
 }
 
 function renderCard(data) {
-  const cardElement = getCardElement(data);
+  const cardElement = createCard(data);
   cardListEl.prepend(cardElement);
 }
 
@@ -117,31 +117,23 @@ function createCard(data) {
   return card.getView();
 }
 
-function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
+cardImageEl.addEventListener("click", () =>
+  openImageModal(cardImageEl.src, cardImageEl.alt, cardTitleEl.textContent)
+);
 
-  cardImageEl.addEventListener("click", () =>
-    openImageModal(cardImageEl.src, cardImageEl.alt, cardTitleEl.textContent)
-  );
+likeButton.addEventListener("click", () => {
+  likeButton.classList.toggle("card__like-button_active");
+});
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+deleteButton.addEventListener("click", () => {
+  cardElement.remove();
+});
 
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+cardImageEl.src = data.link;
+cardImageEl.alt = data.name;
 
-  cardImageEl.src = data.link;
-  cardImageEl.alt = data.name;
-
-  cardTitleEl.textContent = data.name;
-  return cardElement;
-}
+cardTitleEl.textContent = data.name;
+return cardElement;
 
 function handleOverlayClick(e) {
   if (e.target.classList.contains("modal")) {
