@@ -113,7 +113,7 @@ function openImageModal(imageSrc, imageAlt, captionText) {
 }
 
 function createCard(data) {
-  const card = new Card(data, "#card-template");
+  const card = new Card(data, "#card-template", openImageModal);
   return card.getView();
 }
 

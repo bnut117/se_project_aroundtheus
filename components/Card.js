@@ -11,13 +11,13 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
-        this.handleLikeIcon();
+        this._handleLikeIcon();
       });
     //".card__delete-button"
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        this.handleDeleteCard();
+        this._handleDeleteCard();
       });
     //"_cardImageEl"
     this._cardImageEl.addEventListener("click", () => {
