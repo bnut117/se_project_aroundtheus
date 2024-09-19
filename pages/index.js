@@ -117,24 +117,6 @@ function createCard(data) {
   return card.getView();
 }
 
-cardImageEl.addEventListener("click", () =>
-  openImageModal(cardImageEl.src, cardImageEl.alt, cardTitleEl.textContent)
-);
-
-likeButton.addEventListener("click", () => {
-  likeButton.classList.toggle("card__like-button_active");
-});
-
-deleteButton.addEventListener("click", () => {
-  cardElement.remove();
-});
-
-cardImageEl.src = data.link;
-cardImageEl.alt = data.name;
-
-cardTitleEl.textContent = data.name;
-return cardElement;
-
 function handleOverlayClick(e) {
   if (e.target.classList.contains("modal")) {
     closeModal(e.target);
