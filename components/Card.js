@@ -21,7 +21,7 @@ export default class Card {
       });
     //"_cardImageEl"
     this._cardImageEl.addEventListener("click", () => {
-      this._handleImageClick(this._name, this._link);
+      this._handleImageClick(this._link, this._name);
     });
   }
 
