@@ -108,7 +108,7 @@ function renderCard(data) {
 function openImageModal(imageSrc, imageAlt, captionText) {
   modalImage.src = imageSrc;
   modalImage.alt = imageAlt;
-  modalCaption.textContent = captionText;
+  modalCaption.textContent = captionText || imageAlt;
   openModal(imagePreviewModal);
 }
 
@@ -177,9 +177,6 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
-
-const card = new Card(cardData, "#card-template");
-card.getView();
 
 const validationSettings = {
   inputSelector: ".modal__input",
