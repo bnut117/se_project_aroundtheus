@@ -188,9 +188,11 @@ const validationSettings = {
 
 const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
 addCardFormValidator.enableValidation();
+addCardFormValidator.disableButton();
 
 const editProfileFormValidator = new FormValidator(
   validationSettings,
   profileEditForm
 );
 editProfileFormValidator.enableValidation();
+editProfileFormValidator.disableButton();
