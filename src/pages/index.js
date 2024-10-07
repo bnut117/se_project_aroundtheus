@@ -1,52 +1,49 @@
-import Card from "./Card.js";
+import Section from "../components/Section.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImages from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
+import "./index.css";
+import { initialCards, validationSettings } from "../utils/constants.js";
 
-import FormValidator from "./FormValidator.js";
-import "../pages/index.css";
+const userInfo = new UserInfo({
+  nameSelector: "#profile-name",
+  jobSelector: "#profile-description",
+});
 
-const initialCards = [
+function renderer(cardData) {
+  const cardElement = createCard(cardData);
+  section.addItem(cardElement);
+}
+
+const section = new Section(
   {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+    items: initialCards,
+    renderer: renderer,
   },
+  "#card-list"
+);
 
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
+section.renderItems();
 
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
+const profileEditModal = new PopupWithForm(
+  "#profile-edit-modal",
+  handleProfileEditSubmit
+);
+profileEditModal.setEventListeners();
+const addCardModal = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
+addCardModal.setEventListeners();
 
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
-const cardData = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
+const previewImageModal = new PopupWithImages("#image-modal");
+previewImageModal.setEventListeners();
 
 /*************
  * ELEMENTS; *
  *************/
 
 const profileEditButton = document.querySelector("#profile-edit-button");
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const addCardModal = document.querySelector("#add-card-modal");
+
 const profileModalCloseButton = profileEditModal.querySelector(
   "#profile-edit-close-button"
 );
@@ -139,6 +136,7 @@ function handleEscPress(e) {
 
 function handleProfileEditSubmit(e) {
   e.preventDefault();
+  userInfo.setUserInfo({ name: data.name, job: data.description });
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closeModal(profileEditModal);
@@ -178,14 +176,6 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
-
-const validationSettings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 
 const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
 addCardFormValidator.enableValidation();

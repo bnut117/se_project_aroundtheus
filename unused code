@@ -1,0 +1,13 @@
+//this section is for potentially unused code
+//I do not want to lose it until I know its not needed
+//I will delete after project approval
+
+//from index.js
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+const profileEditModal = document.querySelector("#profile-edit-modal");
+
+const addCardModal = document.querySelector("#add-card-modal");
