@@ -22,7 +22,7 @@ const section = new Section(
     items: initialCards,
     renderer: renderer,
   },
-  "#card-list"
+  ".cards__list"
 );
 
 section.renderItems();
