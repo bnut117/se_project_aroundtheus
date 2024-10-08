@@ -27,15 +27,18 @@ const section = new Section(
 
 section.renderItems();
 
-const profileEditModal = new PopupWithForm(
+const profileEditModalEl = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit
 );
-profileEditModal.setEventListeners();
-const addCardModal = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
+profileEditModalEl.setEventListeners();
+const addCardModal = new PopupWithForm(
+  "#add-card-modal",
+  handleAddCardEditSubmit
+);
 addCardModal.setEventListeners();
 
-const previewImageModal = new PopupWithImages("#image-modal");
+const previewImageModal = new PopupWithImages("#image-preview-modal");
 previewImageModal.setEventListeners();
 
 /*************
@@ -44,12 +47,14 @@ previewImageModal.setEventListeners();
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 
-const profileModalCloseButton = profileEditModal.querySelector(
+const profileModalCloseButton = profileEditModalEl.querySelector(
   "#profile-edit-close-button"
 );
-const addCardModalCloseButton = addCardModal.querySelector(
-  "#profile-edit-close-button"
-);
+
+// const addCardModalCloseButton = addCardModal.querySelector(
+//  "#profile-edit-close-button"
+// );
+
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 
@@ -59,10 +64,10 @@ const profileDescriptionInput = document.querySelector(
 );
 
 const profileEditForm = profileEditModal.querySelector(".modal__form");
-const addCardForm = addCardModal.querySelector(".modal__form");
+// const addCardForm = addCardModal.querySelector(".modal__form");
 
-const cardTitleInput = addCardForm.querySelector(".modal__input_type_title");
-const cardLinkInput = addCardForm.querySelector(".modal__input_type_link");
+// const cardTitleInput = addCardForm.querySelector(".modal__input_type_title");
+// const cardLinkInput = addCardForm.querySelector(".modal__input_type_link");
 
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
@@ -81,6 +86,14 @@ imagePreviewCloseButton.addEventListener("click", () =>
 );
 
 const modalCaption = document.querySelector("#modal-caption");
+
+const addCardModalEl = document.querySelector("#add-card-modal");
+const addCardForm = addCardModalEl.querySelector(".modal__form");
+const cardTitleInput = addCardModalEl.querySelector(".modal__input_type_title");
+const cardLinkInput = addCardModalEl.querySelector(".modal__input_type_link");
+const addCardModalCloseButton = addCardModalEl.querySelector(
+  "#profile-edit-close-button"
+);
 
 /*************
  * FUNCTIONS *
