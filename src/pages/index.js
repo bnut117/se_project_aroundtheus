@@ -27,11 +27,12 @@ const section = new Section(
 
 section.renderItems();
 
-const profileEditModalEl = new PopupWithForm(
+const profileEditModal = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit
 );
-profileEditModalEl.setEventListeners();
+
+profileEditModal.setEventListeners();
 const addCardModal = new PopupWithForm(
   "#add-card-modal",
   handleAddCardEditSubmit
@@ -47,13 +48,9 @@ previewImageModal.setEventListeners();
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 
-const profileModalCloseButton = profileEditModalEl.querySelector(
+const profileModalCloseButton = profileEditModal.querySelector(
   "#profile-edit-close-button"
 );
-
-// const addCardModalCloseButton = addCardModal.querySelector(
-//  "#profile-edit-close-button"
-// );
 
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
