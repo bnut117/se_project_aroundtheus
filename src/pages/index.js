@@ -48,6 +48,8 @@ previewImageModal.setEventListeners();
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 
+const profileEditModalElement = document.querySelector("#profile-edit-modal");
+
 const profileModalCloseButton = profileEditModal.querySelector(
   "#profile-edit-close-button"
 );
@@ -60,7 +62,7 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 
-const profileEditForm = profileEditModal.querySelector(".modal__form");
+const profileEditForm = profileEditModalElement.querySelector(".modal__form");
 // const addCardForm = addCardModal.querySelector(".modal__form");
 
 // const cardTitleInput = addCardForm.querySelector(".modal__input_type_title");
