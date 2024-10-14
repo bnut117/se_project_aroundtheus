@@ -31,8 +31,8 @@ const profileEditModal = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit
 );
-
 profileEditModal.setEventListeners();
+
 const addCardModal = new PopupWithForm(
   "#add-card-modal",
   handleAddCardEditSubmit
@@ -148,6 +148,7 @@ function handleProfileEditSubmit(e) {
   userInfo.setUserInfo({ name: data.name, job: data.description });
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
+  profileEditModal.close();
   //closeModal(profileEditModal);
 }
 
@@ -158,6 +159,7 @@ function handleAddCardEditSubmit(e) {
   renderCard({ name, link }, cardListEl);
   addCardForm.reset();
   addCardFormValidator.disableButton();
+  addCardModal.close();
   //closeModal(addCardModal);
 }
 
@@ -168,16 +170,18 @@ function handleAddCardEditSubmit(e) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
+  profileEditModal.open();
   //openModal(profileEditModal);
 });
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardForm.addEventListener("submit", handleAddCardEditSubmit);
 
-initialCards.forEach((data) => renderCard(data, cardListEl));
+//initialCards.forEach((data) => renderCard(data, cardListEl));
 
 //add new card button
-//addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+
 //addCardModalCloseButton.addEventListener("click", () =>
 //  closeModal(addCardModal)
 // );
