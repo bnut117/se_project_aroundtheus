@@ -180,9 +180,9 @@ addCardForm.addEventListener("submit", handleAddCardEditSubmit);
 //initialCards.forEach((data) => renderCard(data, cardListEl));
 
 //add new card button
-addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+addNewCardButton.addEventListener("click", () => addCardModal.open());
 
-//addCardModalCloseButton.addEventListener("click", () =>
+addCardModalCloseButton.addEventListener("click", () => addCardModal.close());
 //  closeModal(addCardModal)
 // );
 
