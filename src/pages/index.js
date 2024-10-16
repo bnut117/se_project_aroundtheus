@@ -162,7 +162,6 @@ function handleProfileEditSubmit(e) {
 }
 
 function handleAddCardEditSubmit(e) {
-  //e.preventDefault();
   const name = cardTitleInput.value;
   const link = cardLinkInput.value;
   renderCard({ name, link }, cardListEl);
@@ -184,7 +183,7 @@ profileEditButton.addEventListener("click", () => {
 });
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-addCardForm.addEventListener("submit", handleAddCardEditSubmit);
+//addCardForm.addEventListener("submit", handleAddCardEditSubmit);
 
 //initialCards.forEach((data) => renderCard(data, cardListEl));
 
