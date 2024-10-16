@@ -112,7 +112,16 @@ function renderCard(data) {
   cardListEl.prepend(cardElement);
 }
 
-function openImageModal(imageSrc, imageAlt, captionText) {
+function openImageModal(imageSrc, imageAlt) {
+  previewImageModal.open({ name: imageAlt, link: imageSrc });
+}
+
+function createCard(data) {
+  const card = new Card(data, "#card-template", openImageModal);
+  return card.getView();
+}
+
+/*function openImageModal(imageSrc, imageAlt, captionText) {
   modalImage.src = imageSrc;
   modalImage.alt = imageAlt;
   modalCaption.textContent = captionText || imageAlt;
@@ -124,7 +133,7 @@ function createCard(data) {
   return card.getView();
 }
 
-/*function handleOverlayClick(e) {
+function handleOverlayClick(e) {
   if (e.target.classList.contains("modal")) {
     closeModal(e.target);
   }
@@ -153,7 +162,7 @@ function handleProfileEditSubmit(e) {
 }
 
 function handleAddCardEditSubmit(e) {
-  e.preventDefault();
+  //e.preventDefault();
   const name = cardTitleInput.value;
   const link = cardLinkInput.value;
   renderCard({ name, link }, cardListEl);
