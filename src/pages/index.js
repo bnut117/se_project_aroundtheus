@@ -152,7 +152,8 @@ function handleEscPress(e) {
  * EVENT HANDLERS *
  ******************/
 
-function handleProfileEditSubmit() {
+function handleProfileEditSubmit(data) {
+  console.log(data);
   userInfo.setUserInfo({ name: data.name, job: data.description });
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
@@ -160,10 +161,12 @@ function handleProfileEditSubmit() {
   //closeModal(profileEditModal);
 }
 
-function handleAddCardEditSubmit() {
-  const name = cardTitleInput.value;
-  const link = cardLinkInput.value;
-  renderCard({ name, link }, cardListEl);
+function handleAddCardEditSubmit(data) {
+  console.log(data);
+  renderer(data);
+  //const name = cardTitleInput.value;
+  //const link = cardLinkInput.value;
+  //renderCard({ name, link }, cardListEl);
   addCardForm.reset();
   addCardFormValidator.disableButton();
   addCardModal.close();
