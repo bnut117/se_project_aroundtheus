@@ -152,8 +152,7 @@ function handleEscPress(e) {
  * EVENT HANDLERS *
  ******************/
 
-function handleProfileEditSubmit(e) {
-  e.preventDefault();
+function handleProfileEditSubmit() {
   userInfo.setUserInfo({ name: data.name, job: data.description });
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
@@ -161,7 +160,7 @@ function handleProfileEditSubmit(e) {
   //closeModal(profileEditModal);
 }
 
-function handleAddCardEditSubmit(e) {
+function handleAddCardEditSubmit() {
   const name = cardTitleInput.value;
   const link = cardLinkInput.value;
   renderCard({ name, link }, cardListEl);
