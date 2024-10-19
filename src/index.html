@@ -22,13 +22,15 @@
             class="profile__image"
           />
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title" id="profile-name">Jacques Cousteau</h1>
             <button
               class="profile__edit-button"
               id="profile-edit-button"
               type="button"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description" id="profile-description">
+              Explorer
+            </p>
           </div>
           <button class="profile__add-button" type="button"></button>
         </section>
@@ -94,7 +96,7 @@
             <input
               class="modal__input modal__input_type_title"
               type="text"
-              name="title"
+              name="name"
               id="profile-title-input"
               placeholder="Title"
               minlength="1"
@@ -108,7 +110,7 @@
             <input
               class="modal__input modal__input_type_link"
               type="url"
-              name="image link"
+              name="link"
               id="profile-description-input"
               placeholder="Image link"
               required
