@@ -178,8 +178,11 @@ function handleAddCardEditSubmit(data) {
  *******************/
 
 profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  //profileTitleInput.value = profileTitle.textContent;
+  //profileDescriptionInput.value = profileDescription.textContent;
+  const userData = userInfo.getUserInfo();
+  profileTitleInput.value = userData.name.trim();
+  profileDescriptionInput.value = userData.job.trim();
   profileEditModal.open();
   //openModal(profileEditModal);
 });
