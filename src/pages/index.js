@@ -64,9 +64,6 @@ const addNewCardButton = document.querySelector(".profile__add-button");
 
 const addCardModalEl = document.querySelector("#add-card-modal");
 const addCardForm = addCardModalEl.querySelector(".modal__form");
-const addCardModalCloseButton = addCardModalEl.querySelector(
-  "#profile-edit-close-button"
-);
 
 /*************
  * FUNCTIONS *
@@ -113,12 +110,8 @@ profileEditButton.addEventListener("click", () => {
   profileEditModal.open();
 });
 
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-
 //add new card button
 addNewCardButton.addEventListener("click", () => addCardModal.open());
-
-addCardModalCloseButton.addEventListener("click", () => addCardModal.close());
 
 const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
 addCardFormValidator.enableValidation();
