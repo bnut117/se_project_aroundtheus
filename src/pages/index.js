@@ -84,9 +84,7 @@ function createCard(data) {
 
 function handleProfileEditSubmit(data) {
   console.log(data);
-  userInfo.setUserInfo({ name: data.name, job: data.description });
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+  userInfo.setUserInfo({ name: data.title, job: data.description });
   profileEditModal.close();
   //closeModal(profileEditModal);
 }
