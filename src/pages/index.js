@@ -62,6 +62,8 @@ const profileEditForm = profileEditModalElement.querySelector(".modal__form");
 
 const addNewCardButton = document.querySelector(".profile__add-button");
 
+// const cardDeleteButton = document.querySelector(".card__delete-button");
+
 const addCardModalEl = document.querySelector("#add-card-modal");
 const addCardForm = addCardModalEl.querySelector(".modal__form");
 
@@ -75,7 +77,14 @@ function openImageModal(imageSrc, imageAlt) {
 
 function createCard(data) {
   const card = new Card(data, "#card-template", openImageModal);
-  return card.getView();
+  const cardElement = card.getView();
+
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  deleteButton.addEventListener("click", () => {
+    deleteCardModal.open({ cardElement });
+  });
+
+  return cardElement;
 }
 
 /******************
@@ -111,6 +120,8 @@ profileEditButton.addEventListener("click", () => {
 //add new card button
 addNewCardButton.addEventListener("click", () => addCardModal.open());
 
+// cardDeleteButton.addEventListener("click", () => )
+
 const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
 addCardFormValidator.enableValidation();
 addCardFormValidator.disableButton();
@@ -121,3 +132,115 @@ const editProfileFormValidator = new FormValidator(
 );
 editProfileFormValidator.enableValidation();
 editProfileFormValidator.disableButton();
+
+/*******************
+ * New code before sorting*
+ ******************/
+
+const deleteCardModal = new PopupWithForm(
+  "#confirm-delete-modal",
+  handleDeleteCard
+);
+deleteCardModal.setEventListeners();
+
+function handleDeleteCard(cardData) {
+  cardData.cardElement.remove();
+  deleteCardModal.close();
+}
+
+const avatarEditModal = new PopupWithForm(
+  "#avatar-edit-modal",
+  handleAvatarEditSubmit
+);
+avatarEditModal.setEventListeners();
+
+function handleAvatarEditSubmit(data) {
+  const avatarImage = document.querySelector("#profile-avatar");
+  avatarImage.src = data.avatar;
+  avatarEditModal.close();
+}
+
+const avatarEditButton = document.querySelector("#avatar-edit-button");
+avatarEditButton.addEventListener("click", () => avatarEditModal.open());
+
+/*******************
+ * API's *
+ *******************/
+
+fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+  method: "GET",
+  headers: {
+    authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
+  },
+});
+
+fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+  method: "GET",
+  headers: {
+    authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
+  },
+});
+
+fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+  method: "PATCH",
+  headers: {
+    authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: "Sample Name",
+    about: "Sample About",
+  }),
+});
+
+fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+  method: "POST",
+  headers: {
+    authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: "Bald Mountains",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+  }),
+});
+
+fetch(
+  "https://around-api.en.tripleten-services.com/v1/cards/6727732cc26271001a13eff9",
+  {
+    method: "DELETE",
+    headers: {
+      authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
+    },
+  }
+);
+
+fetch(
+  "https://around-api.en.tripleten-services.com/v1/cards/6727732cc26271001a13eff9/likes",
+  {
+    method: "PUT",
+    headers: {
+      authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
+    },
+  }
+);
+
+fetch(
+  "https://around-api.en.tripleten-services.com/v1/cards/6727732cc26271001a13eff9/likes",
+  {
+    method: "DELETE",
+    headers: {
+      authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
+    },
+  }
+);
+
+fetch("https://around-api.en.tripleten-services.com/v1/users/me/avatar", {
+  method: "PATCH",
+  headers: {
+    authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
+  },
+  body: JSON.stringify({
+    avatar: "",
+  }),
+});
