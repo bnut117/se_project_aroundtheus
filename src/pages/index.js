@@ -4,6 +4,7 @@ import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImages from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 import "./index.css";
 import { initialCards, validationSettings } from "../utils/constants.js";
 
@@ -163,84 +164,15 @@ function handleAvatarEditSubmit(data) {
 const avatarEditButton = document.querySelector("#avatar-edit-button");
 avatarEditButton.addEventListener("click", () => avatarEditModal.open());
 
-/*******************
- * API's *
- *******************/
-
-fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
-  method: "GET",
+//api
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
+    authorization: "0ce0ab02-3e1b-4a63-8c2f-955fb2191e31",
   },
 });
 
-fetch("https://around-api.en.tripleten-services.com/v1/cards", {
-  method: "GET",
-  headers: {
-    authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
-  },
-});
-
-fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
-  method: "PATCH",
-  headers: {
-    authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    name: "Sample Name",
-    about: "Sample About",
-  }),
-});
-
-fetch("https://around-api.en.tripleten-services.com/v1/cards", {
-  method: "POST",
-  headers: {
-    authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  }),
-});
-
-fetch(
-  "https://around-api.en.tripleten-services.com/v1/cards/6727732cc26271001a13eff9",
-  {
-    method: "DELETE",
-    headers: {
-      authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
-    },
-  }
-);
-
-fetch(
-  "https://around-api.en.tripleten-services.com/v1/cards/6727732cc26271001a13eff9/likes",
-  {
-    method: "PUT",
-    headers: {
-      authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
-    },
-  }
-);
-
-fetch(
-  "https://around-api.en.tripleten-services.com/v1/cards/6727732cc26271001a13eff9/likes",
-  {
-    method: "DELETE",
-    headers: {
-      authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
-    },
-  }
-);
-
-fetch("https://around-api.en.tripleten-services.com/v1/users/me/avatar", {
-  method: "PATCH",
-  headers: {
-    authorization: "1f87b53b-5107-4bc0-81a1-e15366407407",
-  },
-  body: JSON.stringify({
-    avatar: "",
-  }),
-});
+api
+  .getUserData()
+  .then((data) => console.log(data))
+  .catch((err) => console.error(err));
