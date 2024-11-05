@@ -3,6 +3,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImages from "../components/PopupWithImage.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import "./index.css";
@@ -68,6 +69,9 @@ const addNewCardButton = document.querySelector(".profile__add-button");
 const addCardModalEl = document.querySelector("#add-card-modal");
 const addCardForm = addCardModalEl.querySelector(".modal__form");
 
+const deleteCardModal = new PopupWithConfirm("#confirm-delete-modal");
+deleteCardModal.setEventListeners();
+
 /*************
  * FUNCTIONS *
  *************/
@@ -82,6 +86,15 @@ function createCard(data) {
 
   const deleteButton = cardElement.querySelector(".card__delete-button");
   deleteButton.addEventListener("click", () => {
+    deleteCardModal.setSubmitAction(() => {
+      api
+        .deleteCard(data._id)
+        .then(() => {
+          cardElement.remove();
+          deleteCardModal.close();
+        })
+        .catch((err) => console.error(`Error: ${err}`));
+    });
     deleteCardModal.open({ cardElement });
   });
 
@@ -95,6 +108,7 @@ function createCard(data) {
 function handleProfileEditSubmit(data) {
   console.log(data);
   userInfo.setUserInfo({ name: data.title, job: data.description });
+  api.updateUserProfile(data);
   profileEditModal.close();
   //closeModal(profileEditModal);
 }
@@ -102,6 +116,7 @@ function handleProfileEditSubmit(data) {
 function handleAddCardEditSubmit(data) {
   console.log(data);
   renderer(data);
+  api.addCard(data);
   addCardForm.reset();
   addCardFormValidator.disableButton();
   addCardModal.close();
@@ -138,12 +153,6 @@ editProfileFormValidator.disableButton();
  * New code before sorting*
  ******************/
 
-const deleteCardModal = new PopupWithForm(
-  "#confirm-delete-modal",
-  handleDeleteCard
-);
-deleteCardModal.setEventListeners();
-
 function handleDeleteCard(cardData) {
   cardData.cardElement.remove();
   deleteCardModal.close();
@@ -156,7 +165,8 @@ const avatarEditModal = new PopupWithForm(
 avatarEditModal.setEventListeners();
 
 function handleAvatarEditSubmit(data) {
-  const avatarImage = document.querySelector("#profile-avatar");
+  const avatarImage = document.querySelector("#profile__image");
+  api.updateUserProfile(data);
   avatarImage.src = data.avatar;
   avatarEditModal.close();
 }
