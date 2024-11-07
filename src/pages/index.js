@@ -80,7 +80,7 @@ function openImageModal(imageSrc, imageAlt) {
   previewImageModal.open({ name: imageAlt, link: imageSrc });
 }
 
-function createCard(data) {
+/* function createCard(data) {
   const card = new Card(data, "#card-template", openImageModal);
   const cardElement = card.getView();
 
@@ -99,7 +99,40 @@ function createCard(data) {
   });
 
   return cardElement;
+} */
+
+function createCard(data) {
+  const card = new Card(
+    data,
+    "#card-template",
+    openImageModal,
+    handleDeleteCardWithApi
+  );
+  const cardElement = card.getView();
+
+  return cardElement;
 }
+
+function handleDeleteCardWithApi(data) {
+  deleteCardModal.open();
+
+  deleteCardModal.setSubmitAction(() => {
+    api
+      .deleteCard(data._id)
+      .then(() => {
+        data._handleDeleteCard();
+        deleteCardModal.close();
+      })
+      .catch((err) => console.error(`Error: ${err}`));
+  });
+}
+
+api
+  .getInitialCards()
+  .then((data) => {
+    section.renderItems(data);
+  })
+  .catch((err) => console.error(err));
 
 /******************
  * EVENT HANDLERS *
