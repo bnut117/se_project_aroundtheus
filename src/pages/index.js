@@ -225,14 +225,16 @@ function handleLike(cardData) {
     api
       .unlikeCard(cardData._id)
       .then(() => {
-        cardData.toggleLikeIcon(false);
+        cardData.updateIsLiked(false);
+        cardData.setLikeState(false);
       })
       .catch((err) => console.error(`Error: ${err}`));
   } else {
     api
       .likeCard(cardData._id)
       .then(() => {
-        cardData.toggleLikeIcon(true);
+        cardData.updateIsLiked(true);
+        cardData.setLikeState(true);
       })
       .catch((err) => console.error(`Error: ${err}`));
   }
