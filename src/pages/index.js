@@ -132,9 +132,8 @@ function handleDeleteCardWithApi(data) {
 function handleProfileEditSubmit(data) {
   console.log(data);
   userInfo.setUserInfo({ name: data.title, job: data.description });
-  api.updateUserProfile(data);
+  api.updateUserProfile(data).then((user) => {});
   profileEditModal.close();
-  //closeModal(profileEditModal);
 }
 
 function handleAddCardEditSubmit(data) {
