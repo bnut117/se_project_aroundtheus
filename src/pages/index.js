@@ -216,3 +216,17 @@ api
     section.renderItems(data);
   })
   .catch((err) => console.error(err));
+
+api
+  .likeCard()
+  .then((cardId) => {
+    section.renderItems(cardId);
+  })
+  .catch((err) => console.error(err));
+
+api
+  .unlikeCard()
+  .then((cardId) => {
+    section.renderItems(cardId);
+  })
+  .catch((err) => console.error(err));
