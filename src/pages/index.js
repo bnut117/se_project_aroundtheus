@@ -21,13 +21,10 @@ function renderer(cardData) {
 
 const section = new Section(
   {
-    items: initialCards,
     renderer: renderer,
   },
   ".cards__list"
 );
-
-section.renderItems();
 
 const profileEditModal = new PopupWithForm(
   "#profile-edit-modal",
@@ -127,13 +124,6 @@ function handleDeleteCardWithApi(data) {
   });
 }
 
-api
-  .getInitialCards()
-  .then((data) => {
-    section.renderItems(data);
-  })
-  .catch((err) => console.error(err));
-
 /******************
  * EVENT HANDLERS *
  ******************/
@@ -218,4 +208,11 @@ const api = new Api({
 api
   .getUserData()
   .then((data) => console.log(data))
+  .catch((err) => console.error(err));
+
+api
+  .getInitialCards()
+  .then((data) => {
+    section.renderItems(data);
+  })
   .catch((err) => console.error(err));
