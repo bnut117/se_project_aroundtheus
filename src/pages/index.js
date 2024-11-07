@@ -103,7 +103,8 @@ function createCard(data) {
     data,
     "#card-template",
     openImageModal,
-    handleDeleteCardWithApi
+    handleDeleteCardWithApi,
+    handleLike
   );
   const cardElement = card.getView();
 
@@ -217,16 +218,22 @@ api
   })
   .catch((err) => console.error(err));
 
-api
-  .likeCard()
-  .then((cardId) => {
-    section.renderItems(cardId);
-  })
-  .catch((err) => console.error(err));
+function handleLike(cardData) {
+  const isLiked = cardData.isLiked();
 
-api
-  .unlikeCard()
-  .then((cardId) => {
-    section.renderItems(cardId);
-  })
-  .catch((err) => console.error(err));
+  if (isLiked) {
+    api
+      .unlikeCard(cardData._id)
+      .then(() => {
+        cardData.toggleLikeIcon(false);
+      })
+      .catch((err) => console.error(`Error: ${err}`));
+  } else {
+    api
+      .likeCard(cardData._id)
+      .then(() => {
+        cardData.toggleLikeIcon(true);
+      })
+      .catch((err) => console.error(`Error: ${err}`));
+  }
+}
