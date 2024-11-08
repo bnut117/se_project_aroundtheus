@@ -6,9 +6,12 @@ export default class UserInfo {
   }
 
   setUserInfo({ name, job, avatar }) {
-    this._nameElement.textContent = name;
-    this._jobElement.textContent = job;
-    if (this._avatarElement) {
+    if (name && job) {
+      this._nameElement.textContent = name;
+      this._jobElement.textContent = job;
+    }
+
+    if (avatar) {
       this._avatarElement.src = avatar;
     }
   }

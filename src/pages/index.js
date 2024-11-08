@@ -12,6 +12,7 @@ import { initialCards, validationSettings } from "../utils/constants.js";
 const userInfo = new UserInfo({
   nameSelector: "#profile-name",
   jobSelector: "#profile-description",
+  avatarSelector: ".profile__image",
 });
 
 function renderer(cardData) {
@@ -188,10 +189,14 @@ const avatarEditModal = new PopupWithForm(
 avatarEditModal.setEventListeners();
 
 function handleAvatarEditSubmit(data) {
-  const avatarImage = document.querySelector("#profile__image");
-  api.updateUserProfile(data);
-  avatarImage.src = data.avatar;
-  avatarEditModal.close();
+  //const avatarImage = document.querySelector("#profile__image");
+  api
+    .updateUserAvatar(data.avatar)
+    .then(() => {
+      userInfo.setUserInfo({ avatar: data.avatar });
+      avatarEditModal.close();
+    })
+    .catch((err) => console.error(`Error updating avatar: ${err}`));
 }
 
 const avatarEditButton = document.querySelector("#avatar-edit-button");
