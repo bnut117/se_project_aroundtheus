@@ -214,7 +214,13 @@ const api = new Api({
 
 api
   .getUserData()
-  .then((data) => userInfo.setUserInfo)
+  .then((data) => {
+    userInfo.setUserInfo({
+      name: data.name,
+      job: data.about,
+      avatar: data.avatar,
+    });
+  })
   .catch((err) => console.error(err));
 
 api
