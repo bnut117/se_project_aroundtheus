@@ -140,12 +140,18 @@ function handleProfileEditSubmit(data) {
 }
 
 function handleAddCardEditSubmit(data) {
-  console.log(data);
-  renderer(data);
-  api.addCard(data);
-  addCardForm.reset();
-  addCardFormValidator.disableButton();
-  addCardModal.close();
+  api
+    .addCard(data)
+    .then((newCard) => {
+      renderer(newCard);
+      addCardForm.reset();
+      addCardFormValidator.disableButton();
+      addCardModal.close();
+    })
+    .catch((err) => console.error(`Error creating card: ${err}`))
+    .finally(() => {
+      addCardModal.setIsLoading(false); // Reset button text to default
+    });
 }
 
 /*******************
