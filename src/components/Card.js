@@ -56,15 +56,6 @@ export default class Card {
     this._isLiked = isLiked;
   }
 
-  toggleLikeIcon(isLiked) {
-    const likeButton = this._cardElement.querySelector(".card__like-button");
-    if (isLiked) {
-      likeButton.classList.add("card__like-button_active");
-    } else {
-      likeButton.classList.remove("card__like-button_active");
-    }
-  }
-
   getView() {
     this._cardElement = document
       .querySelector(this._cardSelector)
