@@ -26,7 +26,7 @@
   border-radius: 10px;
   position: relative;
   width: 430px;
-  height: 330px;
+  padding-bottom: 36px;
 }
 
 .modal__close {
