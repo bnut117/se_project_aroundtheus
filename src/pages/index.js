@@ -137,13 +137,14 @@ function handleProfileEditSubmit(data) {
     .updateUserProfile({ name: data.title, about: data.description })
     .then((user) => {
       userInfo.setUserInfo({ name: user.name, job: user.about });
+      profileEditModal.close();
     })
     .catch((err) => console.error(`Error updating profile: ${err}`))
     .finally(() => profileEditModal.setIsLoading(false));
-  profileEditModal.close();
 }
 
 function handleAddCardEditSubmit(data) {
+  addCardModal.setIsLoading(true);
   api
     .addCard(data)
     .then((newCard) => {
@@ -229,6 +230,7 @@ const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
     authorization: "0ce0ab02-3e1b-4a63-8c2f-955fb2191e31",
+    "Content-Type": "application/json",
   },
 });
 

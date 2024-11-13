@@ -27,10 +27,7 @@ export default class Api {
   updateUserProfile(data) {
     return this._fetch("/users/me", {
       method: "PATCH",
-      headers: {
-        ...this._headers,
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         about: data.about,
