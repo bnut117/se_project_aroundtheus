@@ -114,8 +114,9 @@ function createCard(data) {
 
 function handleDeleteCardWithApi(data) {
   deleteCardModal.open();
-  deleteCardModal.setIsLoading(true);
+
   deleteCardModal.setSubmitAction(() => {
+    deleteCardModal.setIsLoading(true);
     api
       .deleteCard(data.id)
       .then(() => {

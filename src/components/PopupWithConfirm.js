@@ -4,6 +4,7 @@ export default class PopupWithConfirm extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._form = this._popupElement.querySelector(".modal__form");
+    this._submitButton = this._form.querySelector(".modal__button");
   }
   setSubmitAction(action) {
     this._handleSubmit = action;
