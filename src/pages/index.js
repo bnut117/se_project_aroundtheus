@@ -213,13 +213,14 @@ function handleAvatarEditSubmit(data) {
     .catch((err) => console.error(`Error updating avatar: ${err}`))
     .finally(() => avatarEditModal.setIsLoading(false));
 }
-/*
+
 const avatarEditForm = document.querySelector("#avatar-edit-form");
 const avatarFormValidator = new FormValidator(
   validationSettings,
   avatarEditForm
 );
-avatarFormValidator.enableValidation(); */
+avatarFormValidator.enableValidation();
+
 const avatarEditButton = document.querySelector("#avatar-edit-button");
 avatarEditButton.addEventListener("click", () => {
   // avatarFormValidator.resetValidation();

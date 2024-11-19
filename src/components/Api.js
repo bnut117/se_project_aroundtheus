@@ -38,10 +38,7 @@ export default class Api {
   addCard(data) {
     return this._fetch("/cards", {
       method: "POST",
-      headers: {
-        ...this._headers,
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
