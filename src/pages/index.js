@@ -220,6 +220,7 @@ const avatarFormValidator = new FormValidator(
   avatarEditForm
 );
 avatarFormValidator.enableValidation();
+avatarFormValidator.disableButton();
 
 const avatarEditButton = document.querySelector("#avatar-edit-button");
 avatarEditButton.addEventListener("click", () => {
