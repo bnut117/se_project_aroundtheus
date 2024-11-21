@@ -118,9 +118,9 @@ function handleDeleteCardWithApi(data) {
   deleteCardModal.setSubmitAction(() => {
     deleteCardModal.setIsLoading(true);
     api
-      .deleteCard(data._id)
+      .deleteCard(data.getID())
       .then(() => {
-        data._handleDeleteCard();
+        data.handleDeleteCard();
         deleteCardModal.close();
       })
       .catch((err) => console.error(`Error: ${err}`))

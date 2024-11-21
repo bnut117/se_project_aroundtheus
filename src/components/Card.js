@@ -35,8 +35,11 @@ export default class Card {
     });
   }
 
-  _handleDeleteCard() {
+  handleDeleteCard() {
     this._cardElement.remove();
+  }
+  getID() {
+    return this._id;
   }
 
   setLikeState(isLiked) {
