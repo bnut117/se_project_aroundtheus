@@ -3,13 +3,16 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImages from "../components/PopupWithImage.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 import "./index.css";
 import { initialCards, validationSettings } from "../utils/constants.js";
 
 const userInfo = new UserInfo({
   nameSelector: "#profile-name",
   jobSelector: "#profile-description",
+  avatarSelector: ".profile__image",
 });
 
 function renderer(cardData) {
@@ -19,13 +22,10 @@ function renderer(cardData) {
 
 const section = new Section(
   {
-    items: initialCards,
     renderer: renderer,
   },
   ".cards__list"
 );
-
-section.renderItems();
 
 const profileEditModal = new PopupWithForm(
   "#profile-edit-modal",
@@ -62,8 +62,13 @@ const profileEditForm = profileEditModalElement.querySelector(".modal__form");
 
 const addNewCardButton = document.querySelector(".profile__add-button");
 
+// const cardDeleteButton = document.querySelector(".card__delete-button");
+
 const addCardModalEl = document.querySelector("#add-card-modal");
 const addCardForm = addCardModalEl.querySelector(".modal__form");
+
+const deleteCardModal = new PopupWithConfirm("#confirm-delete-modal");
+deleteCardModal.setEventListeners();
 
 /*************
  * FUNCTIONS *
@@ -73,9 +78,54 @@ function openImageModal(imageSrc, imageAlt) {
   previewImageModal.open({ name: imageAlt, link: imageSrc });
 }
 
-function createCard(data) {
+/* function createCard(data) {
   const card = new Card(data, "#card-template", openImageModal);
-  return card.getView();
+  const cardElement = card.getView();
+
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  deleteButton.addEventListener("click", () => {
+    deleteCardModal.setSubmitAction(() => {
+      api
+        .deleteCard(data._id)
+        .then(() => {
+          cardElement.remove();
+          deleteCardModal.close();
+        })
+        .catch((err) => console.error(`Error: ${err}`));
+    });
+    deleteCardModal.open({ cardElement });
+  });
+
+  return cardElement;
+} */
+
+function createCard(data) {
+  const card = new Card(
+    data,
+    "#card-template",
+    openImageModal,
+    handleDeleteCardWithApi,
+    handleLike
+  );
+  const cardElement = card.getView();
+
+  return cardElement;
+}
+
+function handleDeleteCardWithApi(data) {
+  deleteCardModal.open();
+
+  deleteCardModal.setSubmitAction(() => {
+    deleteCardModal.setIsLoading(true);
+    api
+      .deleteCard(data.getID())
+      .then(() => {
+        data.handleDeleteCard();
+        deleteCardModal.close();
+      })
+      .catch((err) => console.error(`Error: ${err}`))
+      .finally(() => deleteCardModal.setIsLoading(false));
+  });
 }
 
 /******************
@@ -83,18 +133,31 @@ function createCard(data) {
  ******************/
 
 function handleProfileEditSubmit(data) {
-  console.log(data);
-  userInfo.setUserInfo({ name: data.title, job: data.description });
-  profileEditModal.close();
-  //closeModal(profileEditModal);
+  profileEditModal.setIsLoading(true);
+  api
+    .updateUserProfile({ name: data.title, about: data.description })
+    .then((user) => {
+      userInfo.setUserInfo({ name: user.name, job: user.about });
+      profileEditModal.close();
+    })
+    .catch((err) => console.error(`Error updating profile: ${err}`))
+    .finally(() => profileEditModal.setIsLoading(false));
 }
 
 function handleAddCardEditSubmit(data) {
-  console.log(data);
-  renderer(data);
-  addCardForm.reset();
-  addCardFormValidator.disableButton();
-  addCardModal.close();
+  addCardModal.setIsLoading(true);
+  api
+    .addCard(data)
+    .then((newCard) => {
+      renderer(newCard);
+      addCardForm.reset();
+      addCardFormValidator.disableButton();
+      addCardModal.close();
+    })
+    .catch((err) => console.error(`Error creating card: ${err}`))
+    .finally(() => {
+      addCardModal.setIsLoading(false);
+    });
 }
 
 /*******************
@@ -111,6 +174,8 @@ profileEditButton.addEventListener("click", () => {
 //add new card button
 addNewCardButton.addEventListener("click", () => addCardModal.open());
 
+// cardDeleteButton.addEventListener("click", () => )
+
 const addCardFormValidator = new FormValidator(validationSettings, addCardForm);
 addCardFormValidator.enableValidation();
 addCardFormValidator.disableButton();
@@ -121,3 +186,93 @@ const editProfileFormValidator = new FormValidator(
 );
 editProfileFormValidator.enableValidation();
 editProfileFormValidator.disableButton();
+
+/*******************
+ * New code before sorting*
+ ******************/
+
+function handleDeleteCard(cardData) {
+  cardData.cardElement.remove();
+  deleteCardModal.close();
+}
+
+const avatarEditModal = new PopupWithForm(
+  "#avatar-edit-modal",
+  handleAvatarEditSubmit
+);
+avatarEditModal.setEventListeners();
+
+function handleAvatarEditSubmit(data) {
+  avatarEditModal.setIsLoading(true);
+  api
+    .updateUserAvatar(data.avatar)
+    .then(() => {
+      userInfo.setUserInfo({ avatar: data.avatar });
+      avatarEditModal.close();
+    })
+    .catch((err) => console.error(`Error updating avatar: ${err}`))
+    .finally(() => avatarEditModal.setIsLoading(false));
+}
+
+const avatarEditForm = document.querySelector("#avatar-edit-form");
+const avatarFormValidator = new FormValidator(
+  validationSettings,
+  avatarEditForm
+);
+avatarFormValidator.enableValidation();
+avatarFormValidator.disableButton();
+
+const avatarEditButton = document.querySelector("#avatar-edit-button");
+avatarEditButton.addEventListener("click", () => {
+  // avatarFormValidator.resetValidation();
+  avatarEditModal.open();
+});
+
+//api
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "0ce0ab02-3e1b-4a63-8c2f-955fb2191e31",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getUserData()
+  .then((data) => {
+    userInfo.setUserInfo({
+      name: data.name,
+      job: data.about,
+      avatar: data.avatar,
+    });
+  })
+  .catch((err) => console.error(`Error fetching user data: ${err}`));
+
+api
+  .getInitialCards()
+  .then((data) => {
+    section.renderItems(data);
+  })
+  .catch((err) => console.error(`Error fetching initial cards: ${err}`));
+
+function handleLike(cardData) {
+  const isLiked = cardData.isLiked();
+
+  if (isLiked) {
+    api
+      .unlikeCard(cardData._id)
+      .then(() => {
+        cardData.updateIsLiked(false);
+        cardData.setLikeState(false);
+      })
+      .catch((err) => console.error(`Error: ${err}`));
+  } else {
+    api
+      .likeCard(cardData._id)
+      .then(() => {
+        cardData.updateIsLiked(true);
+        cardData.setLikeState(true);
+      })
+      .catch((err) => console.error(`Error: ${err}`));
+  }
+}

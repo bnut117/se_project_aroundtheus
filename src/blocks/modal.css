@@ -26,7 +26,7 @@
   border-radius: 10px;
   position: relative;
   width: 430px;
-  height: 330px;
+  padding-bottom: 36px;
 }
 
 .modal__close {
@@ -139,7 +139,6 @@
   }
 
   .modal__container {
-    height: 322px;
     top: -123px;
     max-width: 282px;
   }
@@ -190,5 +189,9 @@
     width: 100%;
     margin: 0;
     padding: 0;
+  }
+
+  .modal__avatar {
+    margin-left: 22px;
   }
 }

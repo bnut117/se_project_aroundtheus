@@ -1,9 +1,19 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImageClick) {
+  constructor(
+    { _id, name, link, isLiked },
+    cardSelector,
+    handleImageClick,
+    handleDeleteCard,
+    handleLike
+  ) {
+    this._id = _id;
     this._name = name;
     this._link = link;
+    this._isLiked = isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDeleteCardWithApi = handleDeleteCard;
+    this._handleLike = handleLike;
   }
 
   _setEvenetListeners() {
@@ -11,13 +21,13 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
-        this._handleLikeIcon();
+        this._handleLike(this);
       });
     //".card__delete-button"
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        this._handleDeleteCard();
+        this._handleDeleteCardWithApi(this);
       });
     //"_cardImageEl"
     this._cardImageEl.addEventListener("click", () => {
@@ -25,14 +35,28 @@ export default class Card {
     });
   }
 
-  _handleDeleteCard() {
+  handleDeleteCard() {
     this._cardElement.remove();
   }
+  getID() {
+    return this._id;
+  }
 
-  _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+  setLikeState(isLiked) {
+    const likeButton = this._cardElement.querySelector(".card__like-button");
+    if (isLiked) {
+      likeButton.classList.add("card__like-button_active");
+    } else {
+      likeButton.classList.remove("card__like-button_active");
+    }
+  }
+
+  isLiked() {
+    return this._isLiked;
+  }
+
+  updateIsLiked(isLiked) {
+    this._isLiked = isLiked;
   }
 
   getView() {
@@ -42,12 +66,13 @@ export default class Card {
       .cloneNode(true);
     this._cardImageEl = this._cardElement.querySelector(".card__image");
     this._cardTitleEl = this._cardElement.querySelector(".card__title"); // get the title element
-    this._cardTitleEl.textContent = this._name; // set the title text
+    this._cardTitleEl.textContent = this._name;
     this._cardImageEl.src = this._link;
     this._cardImageEl.alt = this._name;
 
+    this.setLikeState(this._isLiked);
     this._setEvenetListeners();
 
-    return this._cardElement; // return the card element
+    return this._cardElement;
   }
 }
